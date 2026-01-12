@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HardGame - Игровые компьютеры</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="page">
+    <header class="header">
+      <div class="header__announcement">
+        <div class="header__announcement-text">
+          Внимание! Действуют новогодние и рождественские скидки!
+        </div>
+      </div>
+      <nav class="header__nav">
+        <div class="header__basket">
+          <a href="#" aria-label="Корзина покупок" class="header__basket-link" id="basket-link">
+            <img src="/assets/img/basket.svg" alt="Корзина" width="20" height="20" class="header__basket-icon">
+            <span class="header__basket-count" id="basket-count">0</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="products" id="products-section">
+        <div class="products__header">
+            <h1 class="products__title">Игровые компьютеры</h1>
+        </div>
+        <div class="products__grid" id="products-grid"></div>
+      </section>
+    </main>
+
+    <!-- Модалка корзины -->
+    <dialog id="cart-modal" class="modal">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h3 class="modal__title">Корзина</h3>
+          <button class="modal__close" id="close-modal">&times;</button>
+        </div>
+        <div class="modal__body">
+          <div class="cart__items" id="cart-items"></div>
+          <div class="cart__empty" id="cart-empty" style="display: none;">
+          <div class="cart__empty-icon">🛒</div>
+            <p class="cart__empty-text">Корзина пуста</p>
+            <button class="button button--primary" id="continue-shopping">Продолжить покупки</button>
+          </div>
+          <div class="cart__total" id="cart-total" style="display: none;">Итого: 0 ₽</div>
+          <div class="modal__actions" id="modal-actions" style="display: none;">
+            <button class="button button--secondary" id="clear-cart">Очистить корзину</button>
+            <button class="button button--primary" id="order-btn">Заказать</button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Модалка успеха заказа -->
+    <dialog id="order-success-modal" class="modal">
+      <div class="modal__content">
+        <h3 class="modal__title">Вы успешно заказали товар!</h3>
+        <button class="button button--primary" id="close-success">OK</button>
+      </div>
+    </dialog>
+    
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
