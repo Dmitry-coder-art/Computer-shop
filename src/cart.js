@@ -1,30 +1,18 @@
 import { formatPrice } from "./products.js";
 
 export function initCart(elements) {
-  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
-  function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-  }
+  let cartItems = [];
 
   function updateCartCounter() {
     const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
     elements.basketCount.textContent = totalItems;
-    
-    // Анимация при изменении количества
-    if (totalItems > 0) {
-      elements.basketCount.classList.add('header__basket-count--animate');
-      setTimeout(() => {
-        elements.basketCount.classList.remove('header__basket-count--animate');
-      }, 600);
-    }
   }
 
   function updateCartVisibility() {
     const isEmpty = cartItems.length === 0;
 
     if (isEmpty) {
-      elements.cartEmpty.style.display = "flex";
+      elements.cartEmpty.style.display = "block";
       elements.cartTotal.style.display = "none";
       elements.modalActions.style.display = "none";
     } else {
@@ -43,7 +31,6 @@ export function initCart(elements) {
       cartItems.push({ id, name, price, quantity: 1 });
     }
 
-    saveCart();
     updateCartCounter();
   }
 
@@ -56,7 +43,6 @@ export function initCart(elements) {
       } else {
         cartItems.splice(itemIndex, 1);
       }
-      saveCart();
       renderCartModal();
       updateCartCounter();
     }
@@ -67,32 +53,19 @@ export function initCart(elements) {
 
     if (itemIndex !== -1) {
       cartItems[itemIndex].quantity += 1;
-      saveCart();
       renderCartModal();
       updateCartCounter();
     }
   }
 
   function removeFromCart(id) {
-    const itemIndex = cartItems.findIndex((item) => item.id === id);
-    
-    if (itemIndex !== -1) {
-      const itemElement = document.querySelector(`.cart__item[data-id="${id}"]`);
-      if (itemElement) {
-        itemElement.style.animation = 'slideOut 0.3s ease forwards';
-        setTimeout(() => {
-          cartItems = cartItems.filter((item) => item.id !== id);
-          saveCart();
-          renderCartModal();
-          updateCartCounter();
-        }, 300);
-      }
-    }
+    cartItems = cartItems.filter((item) => item.id !== id);
+    renderCartModal();
+    updateCartCounter();
   }
 
   function clearCart() {
     cartItems = [];
-    saveCart();
     renderCartModal();
     updateCartCounter();
   }
@@ -100,7 +73,6 @@ export function initCart(elements) {
   function createCartItemElement(item) {
     const element = document.createElement("div");
     element.className = "cart__item";
-    element.setAttribute('data-id', item.id);
 
     const totalPrice = item.price * item.quantity;
 
@@ -125,7 +97,7 @@ export function initCart(elements) {
                 </div>
                 <button class="cart__item-remove" data-id="${
                   item.id
-                }" title="Удалить">×</button>
+                }">×</button>
             </div>
         `;
 
@@ -161,7 +133,6 @@ export function initCart(elements) {
     return [...cartItems];
   }
 
-  // Инициализация при загрузке
   updateCartCounter();
 
   return {
