@@ -14,11 +14,12 @@ export default defineConfig({
       }
     }
   },
-  base: './',
+  publicDir: 'public',
   resolve: {
     alias: {
       '@': '/src',
       '@assets': '/assets'
     }
-  }
+  },
+  assetsInclude: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.jpeg']
 })
