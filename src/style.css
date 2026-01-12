@@ -73,19 +73,21 @@
 }
 
 .header__basket-icon {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  stroke: currentColor;
 }
 
 .header__basket-count {
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: -4px;
+  right: -4px;
   background: #e74c3c;
   color: white;
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   font-size: 12px;
   font-weight: bold;
   display: flex;
