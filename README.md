@@ -15,16 +15,20 @@
 **Клонирование репозитория:**
 
 git clone https://github.com/Dmitry-coder-art/Computer-shop.git
+
 cd Computer-shop
 
 Установка зависимостей:
+
 npm install
 
 Запуск в режиме разработки:
+
 npm run dev
 
 Приложение будет доступно по адресу: http://localhost:3000
 
 Сборка для production:
+
 npm run build
 
