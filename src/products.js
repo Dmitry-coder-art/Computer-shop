@@ -35,7 +35,7 @@ function createProductCard(product, cart) {
   card.innerHTML = `
         <img src="${product.images[0]}" alt="${
     product.name
-  }" class="product-card__image" loading="lazy">
+  }" class="product-card__image">
         <h2 class="product-card__title">${product.name}</h2>
         <p class="product-card__description">${product.description}</p>
         ${specsHTML}
@@ -64,10 +64,6 @@ function createProductCard(product, cart) {
   button.addEventListener("click", () => {
     const { id, name, price } = button.dataset;
     cart.addToCart(id, name, Number(price));
-    button.classList.add("product-card__button--animate");
-    setTimeout(() => {
-      button.classList.remove("product-card__button--animate");
-    }, 400);
   });
 
   return card;
